@@ -5,7 +5,7 @@ let result: HTMLElement | null = document.getElementById("result");
 
 if(result){
 
-    result.innerHTML = joke;
+    result.innerHTML = "\" " + joke + " \"";
 
 }
 
@@ -30,7 +30,7 @@ const displayJoke = async () => {
         //id: "NRZTSnykqjb"
         //joke: "Where do you take someone who’s been injured in a peek-a-boo accident? To the I.C.U."
         //status: 200
-        result.innerHTML = jokeData.joke; // joke variable
+        result.innerHTML = "\" " + jokeData.joke + " \""; // joke variable
     }
 
     //console.log(jokeData); // Logging the joke data

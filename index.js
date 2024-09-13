@@ -13,7 +13,7 @@ const joke = "I can't take my dog to the pond anymore because the ducks keep att
 // HTMLElement for getElementById
 let result = document.getElementById("result");
 if (result) {
-    result.innerHTML = joke;
+    result.innerHTML = "\" " + joke + " \"";
 }
 const getJoke = () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield fetch('https://icanhazdadjoke.com/', {
@@ -31,7 +31,7 @@ const displayJoke = () => __awaiter(void 0, void 0, void 0, function* () {
         //id: "NRZTSnykqjb"
         //joke: "Where do you take someone who’s been injured in a peek-a-boo accident? To the I.C.U."
         //status: 200
-        result.innerHTML = jokeData.joke; // joke variable
+        result.innerHTML = "\" " + jokeData.joke + " \""; // joke variable
     }
     //console.log(jokeData); // Logging the joke data
 });
