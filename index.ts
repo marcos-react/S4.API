@@ -144,6 +144,53 @@ const displayWeather = async () => {
 
 }
 
+// API Chuck Norris
+
+const getChuckNorris = async (): Promise<any> => {
+
+    const response = await fetch('https://api.chucknorris.io/jokes/random', {
+        headers: {
+            'Accept': 'application/json' //JSON format
+        }
+    });
+
+    return await response.json(); // Return JSON response
+}
+
+// {
+//     "categories": [],
+//     "created_at": "2020-01-05 13:42:22.701402",
+//     "icon_url": "https://api.chucknorris.io/img/avatar/chuck-norris.png",
+//     "id": "1-Y15wGpRoGT1LFVev8ZrA",
+//     "updated_at": "2020-01-05 13:42:22.701402",
+//     "url": "https://api.chucknorris.io/jokes/1-Y15wGpRoGT1LFVev8ZrA",
+//     "value": "Chuck Norris respects ZZ Top."
+// }
+
+// DisplayChuckNorris
+
+const DisplayChuckNorris = async () => {
+    const chuckNorrisData = await getChuckNorris();
+
+    console.log(chuckNorrisData);
+    
+    if (result) {
+
+        result.innerHTML = "\" " + chuckNorrisData.value + " \""; 
+    }
+
+}
+
+//random jokes dad Joke and ChuckNorris
+const random = (): void => {
+    let num:number = Math.floor(Math.random() * 2) + 1;
+    if (num % 2 == 0) {
+      displayJoke();
+    } else {
+      DisplayChuckNorris();
+    }
+  };
+
 
 window.onload = () => {
     displayWeather();

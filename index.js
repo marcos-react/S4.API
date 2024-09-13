@@ -114,6 +114,42 @@ const displayWeather = () => __awaiter(void 0, void 0, void 0, function* () {
         weather.innerHTML = `City: ${weatherData.name} - Weather: ${weatherData.weather[0].main} - Details: ${weatherData.weather[0].description}`;
     }
 });
+// API Chuck Norris
+const getChuckNorris = () => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield fetch('https://api.chucknorris.io/jokes/random', {
+        headers: {
+            'Accept': 'application/json' //JSON format
+        }
+    });
+    return yield response.json(); // Return JSON response
+});
+// {
+//     "categories": [],
+//     "created_at": "2020-01-05 13:42:22.701402",
+//     "icon_url": "https://api.chucknorris.io/img/avatar/chuck-norris.png",
+//     "id": "1-Y15wGpRoGT1LFVev8ZrA",
+//     "updated_at": "2020-01-05 13:42:22.701402",
+//     "url": "https://api.chucknorris.io/jokes/1-Y15wGpRoGT1LFVev8ZrA",
+//     "value": "Chuck Norris respects ZZ Top."
+// }
+// DisplayChuckNorris
+const DisplayChuckNorris = () => __awaiter(void 0, void 0, void 0, function* () {
+    const chuckNorrisData = yield getChuckNorris();
+    console.log(chuckNorrisData);
+    if (result) {
+        result.innerHTML = "\" " + chuckNorrisData.value + " \"";
+    }
+});
+//random jokes dad Joke and ChuckNorris
+const random = () => {
+    let num = Math.floor(Math.random() * 2) + 1;
+    if (num % 2 == 0) {
+        displayJoke();
+    }
+    else {
+        DisplayChuckNorris();
+    }
+};
 window.onload = () => {
     displayWeather();
 };
