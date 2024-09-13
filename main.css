@@ -34,3 +34,10 @@ body{
     border-radius: 5px;
     background-color: SkyBlue;
 }
+#weather {
+
+    align-self: flex-start;
+    left: 0;
+    top: 0; 
+    position: absolute;
+}

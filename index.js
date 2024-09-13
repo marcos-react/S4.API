@@ -12,6 +12,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 let joke = "I can't take my dog to the pond anymore because the ducks keep attacking him. That's what I get for buying a pure bread dog.";
 // HTMLElement for getElementById
 let result = document.getElementById("result");
+let weather = document.getElementById("weather");
 const reportJoke = []; // reportJoke is an array of Ivote interface
 const activeJoke = {}; // I put ? in variables because are not initiate. Otherwise give an error. 
 const scoreAdd = (score) => {
@@ -51,3 +52,68 @@ const displayJoke = () => __awaiter(void 0, void 0, void 0, function* () {
     }
     //console.log(jokeData); // Logging the joke data
 });
+// API OpenWeather
+const getWeather = () => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield fetch('https://api.openweathermap.org/data/2.5/weather?q=Barcelona&appid=127e6b274e343ebd140a7a060362a714', {
+        headers: {
+            'Accept': 'application/json' //JSON format
+        }
+    });
+    return yield response.json(); // Return JSON response
+});
+// city: Barcelona  and API key= 127e6b274e343ebd140a7a060362a714
+// //https://api.openweathermap.org/data/2.5/weather?q=Barcelona&appid=127e6b274e343ebd140a7a060362a714
+//     "coord": {
+//         "lon": 2.159,
+//         "lat": 41.3888
+//     },
+//     "weather": [
+//         {
+//             "id": 801,
+//             "main": "Clouds",
+//             "description": "few clouds",
+//             "icon": "02d"
+//         }
+//     ],
+//     "base": "stations",
+//     "main": {
+//         "temp": 295.28,
+//         "feels_like": 294.72,
+//         "temp_min": 293.88,
+//         "temp_max": 297.1,
+//         "pressure": 1020,
+//         "humidity": 45,
+//         "sea_level": 1020,
+//         "grnd_level": 1013
+//     },
+//     "visibility": 10000,
+//     "wind": {
+//         "speed": 5.66,
+//         "deg": 120
+//     },
+//     "clouds": {
+//         "all": 20
+//     },
+//     "dt": 1726234855,
+//     "sys": {
+//         "type": 2,
+//         "id": 2032131,
+//         "country": "ES",
+//         "sunrise": 1726205403,
+//         "sunset": 1726250676
+//     },
+//     "timezone": 7200,
+//     "id": 3128760,
+//     "name": "Barcelona",
+//     "cod": 200
+// DisplayWeather
+const displayWeather = () => __awaiter(void 0, void 0, void 0, function* () {
+    const weatherData = yield getWeather();
+    console.log(weatherData);
+    if (weather) {
+        weather.innerHTML = `City: ${weatherData.name} - Weather: ${weatherData.weather[0].main} - Details: ${weatherData.weather[0].description}`;
+    }
+});
+window.onload = () => {
+    displayWeather();
+};
